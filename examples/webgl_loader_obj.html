@@ -35,6 +35,7 @@
 
 		<script src="js/Detector.js"></script>
 		<script src="js/libs/stats.min.js"></script>
+		<script src="objdata.js"></script>
 
 		<script>
 
@@ -87,10 +88,7 @@
 				// model
 
 				var loader = new THREE.OBJLoader();
-				loader.addEventListener( 'load', function ( event ) {
-
-					var object = event.content;
-
+				var doit = function (object) {
 					object.traverse( function ( child ) {
 
 						if ( child instanceof THREE.Mesh ) {
@@ -104,10 +102,15 @@
 					object.position.y = - 80;
 					object.scale.set(20, 20, 20)
 					scene.add( object );
-
+				}
+				loader.addEventListener( 'load', function ( event ) {
+					doit(event.content);
 				});
 				// loader.load( 'obj/male02/male02.obj' );
-				loader.load( 'obj/Mouse.obj' );
+				// loader.load( 'obj/Mouse.obj' );
+
+				var objmesh = loader.parse(objdata.join("\n"));
+				doit(objmesh);
 
 				//
 
