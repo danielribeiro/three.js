@@ -17,6 +17,7 @@
 
 		<script src="../build/three.min.js"></script>
 		<script src="js/loaders/OBJLoader.js"></script>
+		<script src="OrbitControls.js"></script>
 		<script src="objdata.js"></script>
 
 		<script>
@@ -29,6 +30,7 @@
 
 			var windowHalfX = window.innerWidth / 2;
 			var windowHalfY = window.innerHeight / 2;
+			var controls;
 
 
 			init();
@@ -82,6 +84,7 @@
 				// loader.load( 'obj/Mouse.obj' );
 
 				var objmesh = loader.parse(objdata.join("\n"));
+				objmesh.position.set(0,40,0);
 				doit(objmesh);
 
 				//
@@ -89,7 +92,7 @@
 				renderer = new THREE.WebGLRenderer();
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				container.appendChild( renderer.domElement );
-
+				controls = new THREE.OrbitControls( camera, renderer.domElement );
 				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 
 				//
@@ -127,12 +130,8 @@
 			}
 
 			function render() {
-
-				camera.position.x += ( mouseX - camera.position.x ) * .05;
-				camera.position.y += ( - mouseY - camera.position.y ) * .05;
-
-				camera.lookAt( scene.position );
-
+				controls.update();
+				camera.up = new THREE.Vector3(0,1,0);
 				renderer.render( scene, camera );
 
 			}
