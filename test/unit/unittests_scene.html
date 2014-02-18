@@ -4,22 +4,29 @@
   <meta charset="utf-8">
   <title>ThreeJS Unit Tests - Using build/Three.js</title>
   <link rel="stylesheet" href="qunit-1.10.0.css">
+  <link rel="stylesheet" href="comparer_widget.css">
 </head>
 <body>
   <div id="qunit"></div>
   <div id="image-diffs"></div>
   <script src="qunit-1.10.0.js"></script>
   <style>
-    .input-canvas { display: none; }
+    .output-canvas { display: none; }
+    img.diff-image { display: block; }
   </style>
 
   <!-- add sources to test below -->
 
+    <script src="vendor/rng.js"></script>
   <script src="../../build/three.js"></script>
   <script src="../../examples/js/Mirror.js"></script>
   <script src="vendor/resemble.js"></script>
+  <script src="vendor/ColladaLoaderWithCallback.js"></script>
   <script src="mirror_sample.js"></script>
+  <script src="collada_sample.js"></script>
+  <script src="geometries_sample.js"></script>
 
+  <script src="comparer_widget.js"></script>
   <!-- add class-based unit tests below -->
 
   <script src="scene_test.js"></script>
